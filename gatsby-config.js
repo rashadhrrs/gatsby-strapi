@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
-    title: "My Gatsby Site",
+    title: "Gatsby Blog",
   },
   plugins: [
     "gatsby-plugin-image",
@@ -24,5 +24,20 @@ module.exports = {
       },
       __key: "pages",
     },
+    {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: `http://localhost:1337`,
+        queryLimit: 1000, // Defaults to 100
+        collectionTypes: [`article`]
+      },
+    },
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+      nodeType: 'cover', // Created Node type name
+      imagePath: 'imgUrl' // The image url name in test node type
+      }
+  }
   ],
 };
